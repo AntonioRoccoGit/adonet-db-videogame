@@ -107,39 +107,38 @@ namespace adonet_db_videogame.Classes
             return videogames;
         }
 
-        // TO DO
-    //    public static bool DeleteVideogame(long idToDelete)
-    //    {
-    //        using (SqlConnection connection = new SqlConnection(CONNECTION_SETTINGS))
-    //        {
+        public static bool DeleteVideogame(long idToDelete)
+        {
+            using (SqlConnection connection = new SqlConnection(CONNECTION_SETTINGS))
+            {
 
-    //            try
-    //            {
-    //                connection.Open();
+                try
+                {
+                    connection.Open();
 
-    //                string query = $"DELETE FROM {VIDEOGAME_TABLE} WHERE id=@Id";
+                    string query = $"DELETE FROM {VIDEOGAME_TABLE} WHERE id=@Id";
 
-    //                SqlCommand cmd = new SqlCommand(query, connection);
-    //                cmd.Parameters.Add(new SqlParameter("@Id", idToDelete));
+                    SqlCommand cmd = new SqlCommand(query, connection);
+                    cmd.Parameters.Add(new SqlParameter("@Id", idToDelete));
 
 
-    //                int rowsAffected = cmd.ExecuteNonQuery();
+                    int rowsAffected = cmd.ExecuteNonQuery();
 
-    //                if (rowsAffected > 0)
-    //                {
-    //                    return true;
-    //                }
+                    if (rowsAffected > 0)
+                    {
+                        return true;
+                    }
 
-    //            }
-    //            catch (Exception ex)
-    //            {
-    //                Console.WriteLine(ex.Message);
-    //            }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
 
-    //            return false;
+                return false;
 
-    //        }
+            }
 
-    //    }
+        }
    }
 }

@@ -33,7 +33,7 @@ namespace adonet_db_videogame.Classes
 
         public override string ToString()
         {
-            return $"ID: {this.Id} {Environment.NewLine}-Titolo: {this.Name} {Environment.NewLine}-Descrizione: {this.Overview} {Environment.NewLine}-Rilasciato: {this.ReleaseDate}";
+            return $"ID: {this.Id} -Titolo: {this.Name}{Environment.NewLine} {Environment.NewLine}-Descrizione: {this.Overview} {Environment.NewLine}{Environment.NewLine}-Rilasciato: {this.ReleaseDate}{Environment.NewLine}";
         }
 
 

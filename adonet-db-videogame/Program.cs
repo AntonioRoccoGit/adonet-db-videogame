@@ -16,7 +16,7 @@ namespace adonet_db_videogame
             do
             {
                 Console.WriteLine("\nSeleziona un operazione: ");
-                Console.WriteLine("-1 Aggiungi un videogame\n-2 Cerca videogame per ID\n-3 Cerca videogame per Titolo\n-4 Elimina un videogioco\n-5 Chidi il programma");
+                Console.WriteLine("-1 Aggiungi un videogame\n-2 Cerca videogame per ID\n-3 Cerca videogame per Titolo\n-4 Elimina un videogioco\n-5 Chiudi il programma");
 
                 userChoice = int.Parse(Console.ReadLine());
 
@@ -56,7 +56,9 @@ namespace adonet_db_videogame
                         {
                             foreach (var item in videogames)
                             {
+                                Console.WriteLine("--------------------------------------------");
                                 Console.WriteLine(item?.ToString() ?? "404 NOT FOUND :(");
+                                Console.WriteLine("--------------------------------------------");
                             }
                             Console.WriteLine($"{Environment.NewLine}{videogames.Count()} risultati trovati{Environment.NewLine}");
                         }
