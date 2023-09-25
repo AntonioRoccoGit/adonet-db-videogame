@@ -44,7 +44,7 @@ namespace adonet_db_videogame.Classes
 
         public static Videogame GetVideoGameById(long Id)
         {
-            Videogame videogameFounded = null;
+            
             using (SqlConnection connection = new SqlConnection(CONNECTION_SETTINGS))
             {
                 try
@@ -64,20 +64,19 @@ namespace adonet_db_videogame.Classes
                         using SqlDataReader data = cmd.ExecuteReader();
                         while (data.Read()) 
                         {
-                            videogameFounded = new Videogame(data.GetInt64(0), data.GetString(1), data.GetString(2), data.GetDateTime(3), data.GetInt64(4));
+                            Videogame videogameFounded = new Videogame(data.GetInt64(0), data.GetString(1), data.GetString(2), data.GetDateTime(3), data.GetInt64(4));
                             return videogameFounded;
                         }
                     }
                 }
                 catch (Exception ex) { Console.WriteLine(ex.Message); }
             }
-            return videogameFounded;
+            throw new Exception("Nessun videogame trovato");
         }
 
         public static List<Videogame> GetVideoGameByName(string name)
         {
             List<Videogame> videogames = new List<Videogame> ();
-            Videogame videogameFounded = null;
             using (SqlConnection connection = new SqlConnection(CONNECTION_SETTINGS))
             {
                 try
@@ -93,11 +92,11 @@ namespace adonet_db_videogame.Classes
 
                     using (SqlCommand cmd = new SqlCommand(query, connection))
                     {
-                        cmd.Parameters.Add(new SqlParameter("@Name", "%" + name + "%"));
+                        cmd.Parameters.Add(new SqlParameter("@Name", "%" +  name + "%"));
                         using SqlDataReader data = cmd.ExecuteReader();
                         while (data.Read())
                         {
-                            videogameFounded = new Videogame(data.GetInt64(0), data.GetString(1), data.GetString(2), data.GetDateTime(3), data.GetInt64(4));
+                            Videogame videogameFounded = new Videogame(data.GetInt64(0), data.GetString(1), data.GetString(2), data.GetDateTime(3), data.GetInt64(4));
                             videogames.Add(videogameFounded);
                         }
                     }
@@ -125,9 +124,7 @@ namespace adonet_db_videogame.Classes
                     int rowsAffected = cmd.ExecuteNonQuery();
 
                     if (rowsAffected > 0)
-                    {
                         return true;
-                    }
 
                 }
                 catch (Exception ex)

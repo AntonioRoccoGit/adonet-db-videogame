@@ -13,7 +13,7 @@ namespace adonet_db_videogame.Classes
         public string Name { get; private set; }
         public string Overview { get; private set; }
         public DateTime ReleaseDate { get; private set; }
-        public long SoftwareHouseId { get; private set; } = new Random().Next(1, 7);
+        public long SoftwareHouseId { get; private set; } = 1;
 
         public Videogame(string name, string overview, DateTime releaseDate)
         {
